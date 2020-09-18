@@ -1,13 +1,10 @@
 # pwlookup
 
-(written for python3)
+scraping python script to look up common router passwords on https://www.192-168-1-1-ip.co/
 <br>
-main file: pwlookup.py
-<br>
-scraping python script, look up common router passwords<br>
-(source: https://www.192-168-1-1-ip.co/)
-
+usage: python3 pwlookup.py
 <br><br>
+
 TODO: 
 <br>
 * implement argparsing
