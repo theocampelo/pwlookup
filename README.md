@@ -5,7 +5,7 @@ scraping python script to look up common router passwords on https://www.192-168
 usage: python3 pwlookup.py
 <br><br>
 
-(PS.: router brand and model is currently hardcoded on pwlookup.py file; argparsing still to be implemented)
+(PS.: router brand and model are currently hardcoded on pwlookup.py file; argparsing still to be implemented)
 <br><br>
 TODO: 
 <br>
