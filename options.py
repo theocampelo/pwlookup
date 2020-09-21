@@ -13,17 +13,12 @@ session.head('https://www.192-168-1-1-ip.co/default-usernames-passwords')   # th
 response = session.get(url, headers=headers)
 
 soup = BeautifulSoup(response.content, 'html.parser')
-#debug: print(response) # status code
 
 def get_router(brand, model):
     global soup
     global ajax
     global session
     global headers
-    
-    # just to confirm the params integrity, printing them
-    #debug: print(f"==> options: brand: {brand}")
-    #debug: print(f"==> options: model: {model}")
 
     ################
     brand_id  = None
@@ -48,7 +43,8 @@ def get_router(brand, model):
     # then, search for requests model
     
     r = session.post(ajax, data=dict(brand_id=brand_id), headers=headers)
-    soup = BeautifulSoup(r.content, 'html.parser')  # set new soup for this response (model list)
+    # set new soup for this response (model list)
+    soup = BeautifulSoup(r.content, 'html.parser')
     models = []
 
     for option_tag in soup.findAll('option'):
@@ -58,20 +54,11 @@ def get_router(brand, model):
             new_model['tag_value'] = option_tag['value']
             models.append(new_model)
 
-    # TESTING STUFF HERE
-    #debug: print(f"* AJAX request status: {r}") # test status
-    #debug: print(c.yellow("--> MODELS: "))
-    #debug: for item in models:
-    #debug:        print(item)
-
     for item in models:
         if model == item['tag_name']:
             model_id = item['tag_value']
-            #debug: print(f"* search brand: {model}")
-            #debug: print(f"* set model_id: {model_id}")
 
     payload = dict(brand_id=brand_id, model_id=model_id)
-    #debug: print(c.green(f"* success: payload set: {payload}"))
     
     session.close()
     return payload
